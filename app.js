@@ -28,17 +28,15 @@ app.use(express.json());
 
 
 app.use('/send' , (req, res) =>{
-    // console.log(req.body)
+    
 
     //Sending an Email :
     const output = `
-            <p>New Email From the Portfolio Website </p>
-            <h3>Contact Details </h3>
-            <ul>
-                <li> Name : ${req.body.name}</li>
-                <li> Email : ${req.body.emailaddress}</li>
-                <li> Subject : ${req.body.subject}</li>
-            </ul> `
+            <p>Shandli Somebody contacted you!!</p>
+            <p>  ${req.body.subject}</p>
+             <span>${req.body.name}</span>
+            <span>${req.body.emailaddress}</span>`
+            
     
 
 
@@ -57,8 +55,8 @@ async function main() {
     let info = await transporter.sendMail({
         from: process.env.SENDER, 
         to:   process.env.RECIVER,
-        subject: "Mail from the portfolio",
-        // text: "Hello world?", // plain text body
+        subject: "You received a mail",
+     
         html: output
     });
 
